@@ -88,10 +88,10 @@
           <li><a href="services.html" class="active">Map</a></li>
           <li class="dropdown"><a href="#"><span>Download Data</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="https://drive.google.com/file/d/1MPdPWddOF-jKiFIl2aMoKKRCW6ZfnmJV/view?usp=sharing">Shapefile Tingkat Bahaya</a></li>
-              <li><a href="https://drive.google.com/file/d/1C0_mUVuI7_j7Lisxi1M5Zec3ytWzQ4dc/view?usp=sharing">Shapefile Tingkat Kerentanan</a></li>
-              <li><a href="https://drive.google.com/file/d/1lGP1CtAyOMFqVBZ13SwKkDeA2qbsGjF9/view?usp=sharing">Shapefile Tingkat Kapasitas</a></li>
-              <li><a href="https://drive.google.com/file/d/1BVZGTZZdbF3tnC61Z3aZVUGx2FDGDLZQ/view?usp=sharing">Shapefile Tingkat Risiko</a></li>
+              <li><a href="https://drive.google.com/file/d/1BRzkt7wj-0vcdUCCtkDUdY91gDDWkdST/view?usp=sharing">Shapefile Tingkat Bahaya</a></li>
+              <li><a href="https://drive.google.com/file/d/1XneibmCFcEFEk1lcTXKorr9V-KxsCNjl/view?usp=sharing">Shapefile Tingkat Kerentanan</a></li>
+              <li><a href="https://drive.google.com/file/d/12IuxzsnEUFurTXWgwaxRA7dyVgH9TQ7i/view?usp=sharing">Shapefile Tingkat Kapasitas</a></li>
+              <li><a href="https://drive.google.com/file/d/1Psc-icPxT-qNEhvcclup1AYz7cC5Fhpl/view?usp=sharing">Shapefile Tingkat Risiko</a></li>
             </ul>
           </li>
           <li><a href="contact.html">Contact</a></li>
@@ -354,28 +354,28 @@ north.addTo(map);
 var Tingkat_Kerentanan = L.geoJson(Tingkat_Kerentanan, {
             style: function(feature){
                 var fillColor,
-                    kode = feature.properties.Rentan;
+                    kode = feature.properties.Kerentanan;
                 if (kode == "Tinggi" ) fillColor = "#fc5603"
                 else if ( kode == "Sedang" ) fillColor ="#e8fc03"
                 else fillColor = "#f7f7f7"; // no data
                 return { color: "#999", weight: 0.1, fillColor: fillColor, fillOpacity: .9 };
             },
             onEachFeature: function( feature, layer ){
-                layer.bindPopup(feature.properties.Rentan)
+                layer.bindPopup(feature.properties.Kerentanan)
                 }
             });
 // Tingkat Kapasitas
 var Tingkat_Kapasitas = L.geoJson(Tingkat_Kapasitas, {
             style: function(feature){
                 var fillColor,
-                    kode = feature.properties.kapasitas;
+                    kode = feature.properties.Kapasitas;
                 if (kode == "Sedang" ) fillColor = "#e8fc03"
                 else if (kode == "Tinggi" ) fillColor = "#fc5603"
                 else fillColor = "#f7f7f7"; // no data
                 return { color: "#999", weight: 0.1, fillColor: fillColor, fillOpacity: .9 };
             },
             onEachFeature: function( feature, layer ){
-                layer.bindPopup(feature.properties.kapasitas)
+                layer.bindPopup(feature.properties.Kapasitas)
                 }
             });
 // Tingkat Risiko
@@ -385,6 +385,7 @@ var Tingkat_Risiko = L.geoJson(Tingkat_Risiko, {
                     kode = feature.properties.Risiko;
                 if (kode == "Tinggi" ) fillColor = "#fc5603"
                 else if (kode == "Sedang" ) fillColor = "#e8fc03"
+                else if (kode == "Rendah" ) fillColor = "#03fc24"
                 else fillColor = "#f7f7f7"; // no data
                 return { color: "#999", weight: 0.1, fillColor: fillColor, fillOpacity: .9 };
             },
@@ -445,14 +446,14 @@ var Titik_Sampel = L.geoJson(Titik_Sampel, {
             column: 1,
             legends: [{
                 label: "Batas Kecamatan",
-                font: 29,
+                font: 15,
                 type: "polyline",
                 color: "#000000",
                 fillColor: "000000",
                 weight: 2
             },{
                 label: "Sangat Tinggi",
-                font: 29,
+                font: 15,
                 type: "polygon",
                 sides: 4,
                 color: "#fc0303",
